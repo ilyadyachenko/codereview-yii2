@@ -25,6 +25,12 @@ class Transportation extends \yii\db\ActiveRecord
         return 'transportation';
     }
 
+	public function init()
+	{
+		parent::init();
+		$this->on(self::EVENT_AFTER_INSERT, ['common\events\TransportationEvents', 'onAfterInsert']);
+	}
+
     /**
      * {@inheritdoc}
      */
